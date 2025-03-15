@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class FishingBar : MonoBehaviour
 {
-    public float moveForce = 35f; // 이동 힘
-    public float maxSpeed = 100f; // 최대 속도
-    public float fallAcceleration = -13f; //자연스러운 떨어짐을 위한 가속도
-    public float threshold = 0.2f; //속도가 0이 되는 임계값
+    private float moveForce = 35f; // 이동 힘
+    private float maxSpeed = 100f; // 최대 속도
+    private float fallAcceleration = -13f; //자연스러운 떨어짐을 위한 가속도
+    private float threshold = 0.2f; //속도가 0이 되는 임계값
     private Rigidbody2D rb;
     private Collider2D coll;
     private Collider2D target;
@@ -35,7 +35,7 @@ public class FishingBar : MonoBehaviour
     }
 
 
-    private void UpBar()
+    private void UpBar() //Mouse0을 누르면 bar가 위로 올라감
     {
         if (!fishingSystem.isFishing) return;
         if (Input.GetKey(KeyCode.Mouse0))
@@ -44,7 +44,7 @@ public class FishingBar : MonoBehaviour
         }
     }
 
-    private void DownBar()
+    private void DownBar()//기본적으로 bar가 아래로 내려감
     {
         if (!fishingSystem.isFishing) return;
         rb.linearVelocityY += 1 * fallAcceleration * Time.fixedDeltaTime;
@@ -57,7 +57,7 @@ public class FishingBar : MonoBehaviour
         }
     }
 
-    private void TargetCheck()
+    private void TargetCheck()//bar가 target과 충돌했는지 확인
     {
         if (!fishingSystem.isFishing) return;
         

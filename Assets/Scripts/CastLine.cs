@@ -34,11 +34,13 @@ public class CastLine : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            if (!(GameManager.instance.currentState == FishingState.Idle ||
+                GameManager.instance.currentState == FishingState.Wait )) return; // Idle,Wait 상태가 아니면 리턴
             isCharging = true;
             zzi.transform.position = new Vector3(5,-2,0);
             zzi.linearVelocity = Vector3.zero;
             power = 0;
-            GameManager.instance.ChangeState(FishingState.CastLine);
+            GameManager.instance.ChangeCastLineState();
             castingBar.SetActive(true);
         }
         else if(Input.GetKey(KeyCode.Mouse0))
@@ -77,7 +79,7 @@ public class CastLine : MonoBehaviour
         zzi.AddForce(new Vector2(-(5 + power*16), 20 +  power*10), ForceMode2D.Impulse);
         Debug.Log(zzi.linearVelocity);
         castingBar.SetActive(false);
-        GameManager.instance.ChangeState(FishingState.Wait);
+        GameManager.instance.ChangeWaitState();
         
     }
 

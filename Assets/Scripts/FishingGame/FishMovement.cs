@@ -38,7 +38,7 @@ public class FishMovement : MonoBehaviour
         if (newY > maxY) newY = maxY;
         else if (newY < minY) newY = minY;
         
-        transform.localPosition = new Vector3(transform.position.x, newY, transform.position.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, newY, transform.localPosition.z);
         
         noiseView = noiseValue;
     }
