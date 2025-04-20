@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CastLine : MonoBehaviour
 {
@@ -15,9 +17,8 @@ public class CastLine : MonoBehaviour
         zzi = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();
         castingBar = transform.GetChild(1).gameObject;
         castingBarFill = castingBar.transform.GetChild(0).GetComponent<SpriteRenderer>();
-        castingBar.SetActive(false);
-        zzi.transform.position = new Vector3(5,-2,0);
-     
+        InitZzi();
+
     }
 
     
@@ -28,12 +29,19 @@ public class CastLine : MonoBehaviour
     }
 
 
+    public void InitZzi()
+    {
+        castingBar.SetActive(false);
+        zzi.transform.position = new Vector3(5, -2, 0);
+    }
+
 
     private bool right;
     private void Charging()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return; // UI 클릭시 리턴
             if (!(GameManager.instance.currentState == FishingState.Idle ||
                 GameManager.instance.currentState == FishingState.Wait )) return; // Idle,Wait 상태가 아니면 리턴
             isCharging = true;
@@ -70,22 +78,32 @@ public class CastLine : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            isCharging = false;
-            Casting();
+            if (GameManager.instance.currentState == FishingState.CastLine)
+            {
+                isCharging = false;
+                Casting();
+            }
         }
     }
     private void Casting()
     {
         zzi.AddForce(new Vector2(-(5 + power*16), 20 +  power*10), ForceMode2D.Impulse);
-        Debug.Log(zzi.linearVelocity);
+        //Debug.Log(zzi.linearVelocity);
         castingBar.SetActive(false);
         GameManager.instance.ChangeWaitState();
+        Invoke("PlayCastSound",1.2f);
         
     }
 
     private void ChargingBarSet()
     {
         castingBarFill.size = new Vector2(power,0.25f);
+    }
+
+    private void PlayCastSound()
+    {
+        SoundManager.instance.PlaySFX("SFX5");
+        
     }
 }
 

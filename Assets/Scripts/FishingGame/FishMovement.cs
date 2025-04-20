@@ -59,7 +59,7 @@ public class FishMovement : MonoBehaviour
             if(transform.localPosition.y < -1.6f) randomForce = Random.Range(0, jumpForce);
             else if(transform.localPosition.y > 1.6f) randomForce = Random.Range(-jumpForce, 0);
             rb.linearVelocityY = randomForce; // 위아래로 랜덤한 이동
-            Debug.Log("Jump! " + randomForce);
+            //Debug.Log("Jump! " + randomForce);
             float waitTime = Random.Range(minInterval, maxInterval); // 랜덤 이동 주기
             yield return new WaitForSeconds(waitTime); // 대기 후 다시 실행
         }

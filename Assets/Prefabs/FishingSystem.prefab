@@ -107,8 +107,8 @@ MonoBehaviour:
   noiseView: 0
   isLegendary: 0
   jumpForce: 7
-  minInterval: 0.4
-  maxInterval: 1.1
+  minInterval: 0.3
+  maxInterval: 0.7
 --- !u!50 &6236184351909377240
 Rigidbody2D:
   serializedVersion: 5
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 3705113957555924638}
   - component: {fileID: 3092326529258713114}
   - component: {fileID: 6581620027947682785}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FishingGage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 110575234261587510}
   - component: {fileID: 8518218154986303748}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FishingSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,6 +347,11 @@ MonoBehaviour:
     Exp: 0
     Time: 0
     Img: 0
+  getFishUI: {fileID: 0}
+  fishImage: {fileID: 0}
+  fishName: {fileID: 0}
+  titleText: {fileID: 0}
+  newText: {fileID: 0}
 --- !u!1 &2808236119850743493
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,10 +454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c85464deca054043983f9820ce82d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 32
-  maxSpeed: 100
-  fallAcceleration: -13
-  threshold: 0.2
 --- !u!50 &4300904785235343318
 Rigidbody2D:
   serializedVersion: 5
@@ -538,7 +539,7 @@ GameObject:
   - component: {fileID: 649116963566196129}
   - component: {fileID: 6127767563848862188}
   - component: {fileID: 1533169558500102275}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FishingBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

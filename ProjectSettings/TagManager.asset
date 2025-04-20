@@ -55,5 +55,8 @@ TagManager:
   - name: FishingSystem
     uniqueID: 114088225
     locked: 0
+  - name: UI
+    uniqueID: 1331410635
+    locked: 0
   m_RenderingLayers:
   - Default
